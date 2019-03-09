@@ -1,0 +1,56 @@
+{
+  "name": "jref",
+  "version": "1.0.0",
+  "description": "Traverse JSON objects through json pointers and dereference JSON schemeas",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "prebuild": "npm run clean && npm test",
+    "build": "npm run clean && tsc",
+    "clean": "rimraf dist",
+    "compile": "tsc",
+    "test": "mocha -r ts-node/register test/**/*.test.ts",
+    "lint": "tslint src/**/*.ts",
+    "lint:fix": "tslint src/**/*.ts --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/left-rite/jref.git"
+  },
+  "keywords": [
+    "$ref",
+    "dereference",
+    "json",
+    "json-pointer",
+    "json-schema",
+    "jsonschema",
+    "pointer",
+    "resolve",
+    "reference",
+    "schema",
+    "traverse"
+  ],
+  "author": "Ambrose Fok <left.righteous@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/left-rite/jref/issues"
+  },
+  "homepage": "https://github.com/left-rite/jref",
+  "dependencies": {},
+  "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^10.12.0",
+    "@types/sinon": "^7.0.9",
+    "@types/sinon-chai": "^3.2.2",
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0",
+    "rimraf": "^2.6.2",
+    "sinon": "^7.2.7",
+    "sinon-chai": "^3.3.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.13.1",
+    "tslint-eslint-rules": "^5.4.0",
+    "typescript": "^3.1.3"
+  }
+}
