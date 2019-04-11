@@ -2,11 +2,12 @@ import { clone } from './clone';
 import { resolve } from './resolve';
 
 export function dereference(object: any): any {
-  const duplicate = clone(object);
 
-  if (duplicate && typeof duplicate === 'object') {
-    return resolve(duplicate);
+  if (object && typeof object === 'object') {
+    const duplicate = clone(object);
+    
+    return clone(resolve(duplicate));
   }
 
-  return duplicate;
+  return clone(object);
 }

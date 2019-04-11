@@ -29,4 +29,44 @@ describe('deference()', () => {
     expect(() => dereference(undefined)).to.throw('Unexpected token u in JSON at position 0');
   });
 
+  it('properties in the output are truly dereferenced (modifying a field which was referenced by multiple properties will not change the equivalent field in of the other properties)', () => {
+    const object = {
+      propertyA: { $ref: '#/references/property' },
+      propertyB: { $ref: '#/references/property' },
+      references: {
+        property: {
+          a: 'a',
+          b: 'b',
+          c: 'c'
+        }
+      }
+    };
+
+    let deferencedObject = dereference(object);
+    
+    expect(deferencedObject).to.deep.equal({
+      propertyA: {
+        a: 'a',
+        b: 'b',
+        c: 'c'
+      },
+      propertyB: {
+        a: 'a',
+        b: 'b',
+        c: 'c'
+      },
+      references: {
+        property: {
+          a: 'a',
+          b: 'b',
+          c: 'c'
+        }
+      }
+    });
+
+    deferencedObject.propertyA.c = 'changed';
+
+    expect(deferencedObject.propertyB.c).to.be.equal('c');
+  });
+
 });
